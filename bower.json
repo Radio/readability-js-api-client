@@ -1,0 +1,20 @@
+{
+    "name": "readability-js-api-client",
+    "version": "0.0.1",
+    "main": "./readability.js",
+    "repository" : {
+        "type" : "git",
+        "url" : "https://github.com/Radio/readability-js-api-client.git"
+    },
+    "license" : "MIT",
+    "authors" : [
+        "Max Gopey <gopeyx@gmail.com>"
+    ],
+    "ignore": [
+        "test"
+    ],
+    "dependencies": {
+        "jsSHA": "1.6.*",
+        "jquery": "2.1.*"
+    }
+}

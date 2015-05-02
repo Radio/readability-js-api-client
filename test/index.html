@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Testing Readability js API client</title>
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../bower_components/jsSHA/src/sha1.js"></script>
+        <script src="../readability.js"></script>
+        <style>
+            pre {
+                margin: 0;
+            }
+            .float-left {
+                float: left;
+                padding: 2%;
+                box-sizing: border-box;
+            }
+            .inputs {
+                width: 20%
+            }
+            .code, .result {
+                width: 40%;
+            }
+            .green {
+                color: green;
+            }
+        </style>
+    </head>
+    <body>
+    <form>
+        <div class="float-left inputs">
+            <div>
+                <label>#consumer-key<br/><input id="consumer-key" type="text"/></label>
+            </div>
+            <div>
+                <label>#consumer-secret<br/><input id="consumer-secret" type="text"/></label>
+            </div>
+            <div>
+                <label>#consumer-token<br/><input id="consumer-token" type="text"/></label>
+            </div>
+            <hr/>
+            <div>
+                <label>#user-name<br/><input id="user-name" type="text"/></label>
+            </div>
+            <div>
+                <label>#user-pass<br/><input id="user-pass" type="text"/></label>
+            </div>
+            <hr/>
+            <button type="button" onclick="getBookmarks();">Get Bookmarks*</button>
+            <br><br> * Open console see the results.
+        </div>
+        <div class="float-left code">
+<pre>
+try {
+    var client = new Readability.Reader(
+        new Readability.Consumer(
+            <span class="green">$('#consumer-key').val()</span>,
+            <span class="green">$('#consumer-secret').val()</span>
+        )
+    );
+    <strong>client.authorize(<span class="green">$('#user-name').val()</span>, <span class="green">$('#user-pass').val()</span>)</strong>
+        .then(function(token) {
+            console.info('Authorized');
+            console.log('Token' + token.getValue());
+            console.log('Secret' + token.getSecret());
+        }, function(response) {
+            console.error('AUTH ERROR');
+            console.log(response);
+        })
+        .then(function() {
+            <strong>client.getBookmarks()</strong>
+                .then(function(response) {
+                    console.info('SUCCESS');
+                    console.log(response);
+                }, function(response) {
+                    console.error('ERROR');
+                    console.log(response);
+                });
+        });
+} catch (e) {
+    console.error('EXCEPTION');
+    console.log(e);
+}
+</pre>
+        </div>
+        <div id="result" class="float-left result"></div>
+    </form>
+    <script>
+        function getBookmarks() {
+            try {
+                var $result = $('#result');
+                var client = new Readability.Reader(
+                    new Readability.Consumer(
+                        $('#consumer-key').val(),
+                        $('#consumer-secret').val()
+                    )
+                );
+                client.authorize($('#user-name').val(), $('#user-pass').val())
+                    .then(function(token) {
+                        console.info('Authorized');
+                        console.log('Token' + token.getValue());
+                        console.log('Secret' + token.getSecret());
+                    }, function(response) {
+                        console.error('AUTH ERROR');
+                        console.log(response);
+                    })
+                    .then(function() {
+                        client.getBookmarks()
+                        .then(function(response) {
+                            console.info('SUCCESS');
+                            console.log(response);
+                        }, function(response) {
+                            console.error('ERROR');
+                            console.log(response);
+                        });
+                    });
+            } catch (e) {
+                console.error('EXCEPTION');
+                console.log(e);
+            }
+        }
+    </script>
+    </body>
+</html>
