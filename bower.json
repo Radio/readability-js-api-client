@@ -1,6 +1,6 @@
 {
     "name": "readability-js-api-client",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "main": "./readability.js",
     "repository" : {
         "type" : "git",
