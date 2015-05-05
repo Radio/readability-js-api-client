@@ -162,7 +162,6 @@ var Readability = {};
         };
 
         Readability.xAuthClient.prototype.buildSignatureBaseString = function (url, method, params) {
-            url = url.replace('http://readability.me/readability-js-api-client/test/api-proxy.php', 'https://readability.com/api');
             var baseString = method.toUpperCase() + '&' + encodeURIComponent(url) + '&';
             var encodedParams = [];
             for (var paramKey in params) if (params.hasOwnProperty(paramKey)) {
@@ -259,8 +258,6 @@ var Readability = {};
         Readability.AbstractClient = function() {
             this.httpClient = new Readability.HttpClient();
             this.apiUrl = 'https://readability.com/api';
-            // for testing only:
-            this.apiUrl = 'http://readability.me/readability-js-api-client/test/api-proxy.php';
             this.apiPath = '';
         };
 
