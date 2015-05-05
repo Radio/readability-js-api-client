@@ -50,6 +50,8 @@ if ($method === 'POST') {
     curl_setopt($connection, CURLOPT_HTTPHEADER, ['Content-Type: application/x-www-form-urlencoded']);
 }
 
+header('Content-Security-Policy: *');
+
 $response = curl_exec($connection);
 $httpCode = curl_getinfo($connection, CURLINFO_HTTP_CODE);
 if ($method === 'HEAD') {

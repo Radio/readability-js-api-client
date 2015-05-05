@@ -1,6 +1,6 @@
 {
     "name": "readability-js-api-client",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "main": "./readability.js",
     "repository" : {
         "type" : "git",
@@ -11,7 +11,6 @@
         "Max Gopey <gopeyx@gmail.com>"
     ],
     "ignore": [
-        "test"
     ],
     "dependencies": {
         "jsSHA": "1.6.*",
